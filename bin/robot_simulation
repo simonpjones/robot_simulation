@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'robot_simulation'
+require 'robot_simulation/cli'
+
+cli = RobotSimulation::Cli.new
+cli.start
