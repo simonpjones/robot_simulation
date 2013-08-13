@@ -12,14 +12,14 @@ module RobotSimulation
     end
 
 
-    # Public: Places the robot at a specific position on the table.
+    # Places the robot at a specific position on the table.
     #
-    # x - An Integer X coordinate the robot is to be placed.
-    # y - An Integer Y cooridnate the robot is to be placed.
-    # f - A Symbol of the direction the robot is to be facing (:NORTH, :EAST, :SOUTH, :WEST).
+    # Params:
+    # +x+:: An Integer X coordinate the robot is to be placed.
+    # +y+:: An Integer Y cooridnate the robot is to be placed.
+    # +f+:: A Symbol of the direction the robot is to be facing (:NORTH, :EAST, :SOUTH, :WEST).
     #
-    # Examples
-    #
+    # Example:
     #   place!(1,3,:NORTH)
     #
     # Returns nil
@@ -37,7 +37,7 @@ module RobotSimulation
     end
 
 
-    # Public: Moves the robot one unit forward in the direction it is currently facing.
+    # Moves the robot one unit forward in the direction it is currently facing.
     #
     # Returns nil
     def move!
@@ -55,12 +55,12 @@ module RobotSimulation
     end
 
 
-    # Public: Rotates the robot 90 degress in the specified direction maintaining current position.
+    # Rotates the robot 90 degress in the specified direction maintaining current position.
     #
-    # direction - A Symbol representing the direction to rotate the robot. (:LEFT, :RIGHT)
+    # Params:
+    # +direction+:: A Symbol representing the direction to rotate the robot. (:LEFT, :RIGHT)
     #
-    # Examples
-    #
+    # Example:
     #   rotate!(:RIGHT)
     #
     # Returns nil
@@ -78,7 +78,7 @@ module RobotSimulation
     end
 
 
-    # Public: Gets the current position (X, Y) and facing (F) of the robot.
+    # Gets the current position (X, Y) and facing (F) of the robot.
     #
     # Returns String of the current position of the robot. (1,3,EAST)
     def report
@@ -90,7 +90,7 @@ module RobotSimulation
     end
 
 
-    # Public: Returns the current placed status of the robot
+    # Returns the current placed status of the robot
     # 
     # Returns Boolean of robots current placed status.
     def placed?
