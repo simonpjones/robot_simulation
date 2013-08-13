@@ -1,18 +1,18 @@
 # Robot Simulation
-Robot Simulation is a simulator of a robot that moves along a tabletop.
+Robot Simulation is a simulator of a robot that moves along a table.
 
 ## Usage
-Robot Simulation reads instructions from using REPL, executing them one at a time until 'exit' is entered.
+Robot Simulation reads instructions Command Line input using REPL, executing lines one at a time until 'EXIT' command is entered.
 
 ### Valid Commands
 
 #### PLACE X,Y,FACING
 
-Places the robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.  If the robot is already placed, issuing another valid PLACE command will place the robot in the newly specified location.
+Places the robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.  If the robot is already placed, inputting another valid PLACE command will place the robot in the new location.
 
 #### MOVE
 
-Moves the toy robot one unit forward in the direction it is currently facing.
+Moves the toy robot one step forward in the direction it is currently facing.
 
 #### LEFT
 
@@ -24,11 +24,15 @@ Rotates the robot 90 degrees to the right (i.e. clockwise) without changing the 
 
 #### REPORT
 
-Announces the X,Y and F of the robot.
+Reports the X,Y and FACING of the robot in the command line.
 
-### installing
+#### EXIT
 
-Ensure you have Git, Ruby 2.0.0 / RVM installed.
+Exits the REPL environment.
+
+### Installing
+
+Ensure you have Git, Ruby 2.0.0
 
     gem install bundler
     bundle install
@@ -42,7 +46,10 @@ Ensure you have Git, Ruby 2.0.0 / RVM installed.
     LEFT
     MOVE
     REPORT
+    EXIT
 
 ## Testing
 
     $ rake
+
+
