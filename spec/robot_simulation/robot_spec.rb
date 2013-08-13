@@ -4,6 +4,7 @@ require 'spec_helper'
 require 'robot_simulation/robot'
 
 module RobotSimulation
+  
   describe "Robot" do
 
     before do
@@ -26,19 +27,20 @@ module RobotSimulation
       @robot.placed?.should_not be_true
     end
 
+    describe "Move" do
+      it "should raise a not placed exception" do
+        lambda { @robot.move! }.should raise_error(RobotSimulation::NotPlacedError)
+      end
+    end
+
     describe "Placed" do
       before do
-        @x, @y, @f = 0, 0, :NORTH
-        @robot.place!(@x,@y,@f)
+        @robot.place!(0, 0, :NORTH)
       end
 
-      it "should not be placeable" do
+      it "should be placeable" do
         lambda { @robot.place!(1,1,:SOUTH) }
-        @robot.report.should eq("#{@x},#{@y},#{@f}")
-      end
-
-      it "should raise an already placed exception" do
-        lambda { @robot.place!(0,0,:NORTH) }.should raise_error(RobotSimulation::AlreadyPlacedError)
+        @robot.report.should eq(1,1,:SOUTH)
       end
     end
 
