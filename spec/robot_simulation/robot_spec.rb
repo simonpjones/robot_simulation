@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'robot_simulation/robot'
 
 module RobotSimulation
-  
+
   describe "Robot" do
 
     before do
@@ -38,9 +38,9 @@ module RobotSimulation
         @robot.place!(0, 0, :NORTH)
       end
 
-      it "should be placeable" do
-        lambda { @robot.place!(1,1,:SOUTH) }
-        @robot.report.should eq(1,1,:SOUTH)
+      it "should be replaceable" do
+        @robot.place!(1,1,:SOUTH)
+        @robot.report.should eq("1,1,SOUTH")
       end
     end
 
@@ -136,7 +136,7 @@ module RobotSimulation
         @robot.place!(0,0,:EAST)
       end
 
-      describe "MOVED" do
+      describe "Moved" do
         it "should REPORT at 1,0,EAST" do
           @robot.move!
           @robot.report.should eq("1,0,EAST")
@@ -149,7 +149,7 @@ module RobotSimulation
         @robot.place!(4,4,:EAST)
       end
 
-      describe "MOVED" do
+      describe "Moved thrice" do
         it "should not move" do
           @robot.move!
           @robot.move!

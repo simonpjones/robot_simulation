@@ -6,10 +6,16 @@ module RobotSimulation
       @size = options[:size]
     end
 
+    # Public: Returns the minimum value an x or y coordinate can be
+    #
+    # Returns Integer
     def min_coordinate
       0
     end
 
+    # Public: Returns the maximum value an x or y coordinate can be
+    #
+    # Returns Integer
     def max_coordinate
       size - 1
     end

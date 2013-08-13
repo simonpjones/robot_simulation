@@ -11,6 +11,18 @@ module RobotSimulation
       @table = table
     end
 
+
+    # Public: Places the robot at a specific position on the table.
+    #
+    # x - An Integer X coordinate the robot is to be placed.
+    # y - An Integer Y cooridnate the robot is to be placed.
+    # f - A Symbol of the direction the robot is to be facing (:NORTH, :EAST, :SOUTH, :WEST).
+    #
+    # Examples
+    #
+    #   place!(1,3,:NORTH)
+    #
+    # Returns nil
     def place!(x, y, f)
       if valid_coordinates?(x, y)
         if valid_orientation?(f)
@@ -24,6 +36,10 @@ module RobotSimulation
       end
     end
 
+
+    # Public: Moves the robot one unit forward in the direction it is currently facing.
+    #
+    # Returns nil
     def move!
       if placed?
         case orientation.to_sym
@@ -38,6 +54,16 @@ module RobotSimulation
       end
     end
 
+
+    # Public: Rotates the robot 90 degress in the specified direction maintaining current position.
+    #
+    # direction - A Symbol representing the direction to rotate the robot. (:LEFT, :RIGHT)
+    #
+    # Examples
+    #
+    #   rotate!(:RIGHT)
+    #
+    # Returns nil
     def rotate!(direction)
       if placed?
         if valid_direction? direction
@@ -51,6 +77,10 @@ module RobotSimulation
       end
     end
 
+
+    # Public: Gets the current position (X, Y) and facing (F) of the robot.
+    #
+    # Returns String of the current position of the robot. (1,3,EAST)
     def report
       if placed?
         position.flatten.map(&:to_s).join(',')
@@ -59,6 +89,10 @@ module RobotSimulation
       end
     end
 
+
+    # Public: Returns the current placed status of the robot
+    # 
+    # Returns Boolean of robots current placed status.
     def placed?
       x != nil && y != nil && orientation != nil
     end
