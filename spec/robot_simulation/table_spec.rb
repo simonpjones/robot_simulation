@@ -13,11 +13,11 @@ module RobotSimulation
       end
 
       it "should still have a valid min_coordinate" do
-        @table.min_coordinate.should_not be_nil
+        expect(@table.min_coordinate).to_not be nil
       end
 
       it "should still have a valid max_coordinate" do
-        @table.max_coordinate.should_not be_nil
+        expect(@table.max_coordinate).to_not be nil
       end
 
     end

@@ -9,8 +9,8 @@ module RobotSimulation
 
     before do
       @table = double('table')
-      @table.stub(:max_coordinate).and_return(4)
-      @table.stub(:min_coordinate).and_return(0)
+      allow(@table).to receive(:max_coordinate).and_return(4)
+      allow(@table).to receive(:min_coordinate).and_return(0)
       
       @robot = Robot.new @table
     end
@@ -20,16 +20,16 @@ module RobotSimulation
     end
 
     it "should have a table" do
-      @robot.table.should_not be_nil
+      expect(@robot.table).to_not be nil
     end
 
     it "should not be placed" do
-      @robot.placed?.should_not be_true
+      expect(@robot.placed?).to_not be true
     end
 
     describe "Move" do
       it "should raise a not placed exception" do
-        lambda { @robot.move! }.should raise_error(RobotSimulation::NotPlacedError)
+        expect(lambda { @robot.move! }).to raise_error(RobotSimulation::NotPlacedError)
       end
     end
 
@@ -40,7 +40,7 @@ module RobotSimulation
 
       it "should be replaceable" do
         @robot.place!(1,1,:SOUTH)
-        @robot.report.should eq("1,1,SOUTH")
+        expect(@robot.report).to eq "1,1,SOUTH"
       end
     end
 
@@ -50,38 +50,38 @@ module RobotSimulation
       end
 
       it "should be placed" do
-        @robot.placed?.should be_true
+        expect(@robot.placed?).to be true
       end
 
       it "should be placed at 0,0" do
-        @robot.x.should eq(0)
-        @robot.y.should eq(0)
+        expect(@robot.x).to eq 0
+        expect(@robot.y).to eq 0
       end
 
       it "should be facing NORTH" do
-        @robot.orientation.should eq(:NORTH)
+        expect(@robot.orientation).to eq :NORTH
       end
     end
 
     describe "Placed at invalid direction" do
       it "should not be placed" do
         lambda { @robot.place!(0,0,:SOUTH_WEST) }
-        @robot.placed?.should_not be_true
+        expect(@robot.placed?).to_not be true
       end
 
       it "should raise invalid orientation exception" do
-        lambda { @robot.place!(0,0,:SOUTH_WEST) }.should raise_error(RobotSimulation::InvalidOrientationError)
+        expect(lambda { @robot.place!(0,0,:SOUTH_WEST) }).to raise_error(RobotSimulation::InvalidOrientationError)
       end
     end
 
     describe "Placed at invalid coordinates" do
       it "should not be placed" do
         lambda { @robot.place!(-1,10,:SOUTH) }
-        @robot.placed?.should_not be_true
+        expect(@robot.placed?).to_not be true
       end
 
       it "should raise invalid coorindates exception" do
-        lambda { @robot.place!(-1,10,:SOUTH) }.should raise_error(RobotSimulation::InvalidCoordinatesError)
+        expect(lambda { @robot.place!(-1,10,:SOUTH) }).to raise_error(RobotSimulation::InvalidCoordinatesError)
       end
     end
 
@@ -93,14 +93,14 @@ module RobotSimulation
       describe "Turned LEFT" do
         it "should face NORTH" do
           @robot.rotate!(:LEFT)
-          @robot.report.should eq("0,0,NORTH")
+          expect(@robot.report).to eq "0,0,NORTH"
         end
       end
 
       describe "Turned RIGHT" do
         it "should face SOUTH" do
           @robot.rotate!(:RIGHT)
-          @robot.report.should eq("0,0,SOUTH")
+          expect(@robot.report).to eq "0,0,SOUTH"
         end
       end
 
@@ -108,7 +108,7 @@ module RobotSimulation
         it "should face WEST" do
           @robot.rotate!(:LEFT)
           @robot.rotate!(:LEFT)
-          @robot.report.should eq("0,0,WEST")
+          expect(@robot.report).to eq "0,0,WEST"
         end
       end
 
@@ -116,7 +116,7 @@ module RobotSimulation
         it "should face WEST" do
           @robot.rotate!(:RIGHT)
           @robot.rotate!(:RIGHT)
-          @robot.report.should eq("0,0,WEST")
+          expect(@robot.report).to eq "0,0,WEST"
         end
       end
 
@@ -125,7 +125,7 @@ module RobotSimulation
           @robot.rotate!(:LEFT)
           @robot.rotate!(:LEFT)
           @robot.rotate!(:LEFT)
-          @robot.report.should eq("0,0,SOUTH")
+          expect(@robot.report).to eq "0,0,SOUTH"
         end
       end
     end
@@ -139,7 +139,7 @@ module RobotSimulation
       describe "Moved" do
         it "should REPORT at 1,0,EAST" do
           @robot.move!
-          @robot.report.should eq("1,0,EAST")
+          expect(@robot.report).to eq "1,0,EAST"
         end
       end
     end
@@ -154,7 +154,7 @@ module RobotSimulation
           @robot.move!
           @robot.move!
           @robot.move!
-          @robot.report.should eq("4,4,EAST")
+          expect(@robot.report).to eq "4,4,EAST"
         end
       end
     end
